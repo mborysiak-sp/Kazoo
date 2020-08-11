@@ -127,4 +127,5 @@ dmypy.json
 token.txt
 Scripts/
 .idea/
-/src/api/api_token.txt
+/src/api_token.txt
+/src/api_token.txt

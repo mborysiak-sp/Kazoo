@@ -1,5 +1,7 @@
 from discord.ext.commands import Bot
-from .utils import set_token
+from utils import set_token
+from api.handler import YoutubeHandler
+
 
 BOT_PREFIX = ("[", "]")
 TOKEN = set_token()
@@ -17,9 +19,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith(":p"):
-        msg = "Hello {0.author.mention}".format(message)
-        await message.channel.send(msg)
+    if message.content.startswith("p"):
+        youtube_handler = YoutubeHandler()
+        videos = youtube_handler.get_videos(message)
+        await message.channel.send(videos)
 
 
 client.run(TOKEN)

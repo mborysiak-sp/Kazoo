@@ -1,9 +1,7 @@
 import os
-
 import googleapiclient.discovery
 import googleapiclient.errors
-
-from result import Result
+from .result import Result
 
 
 class YoutubeHandler:
@@ -13,7 +11,8 @@ class YoutubeHandler:
 
         api_service_name = "youtube"
         api_version = "v3"
-        token = open("api_token.txt", "r").read()
+        path = os.path.abspath("../api_token.txt")
+        token = open(path, "r").read()
 
         self.youtube = googleapiclient.discovery.build(
             api_service_name, api_version, developerKey=token
