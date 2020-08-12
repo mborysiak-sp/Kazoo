@@ -7,9 +7,7 @@ class Result:
         self.url = self.get_url(self.id)
 
     def __str__(self):
-        return (f"ID: {self.id}\n"
-                f"Title: {self.title}\n"
-                f"URL: {self.url}\n")
+        return f"ID: {self.id} Title: {self.title} URL: {self.url}\n"
 
     def get_url(self, id):
         return "https://www.youtube.com/watch?v=" + id

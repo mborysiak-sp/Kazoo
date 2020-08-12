@@ -1,10 +1,10 @@
 from discord.ext.commands import Bot
-from utils import set_token
+from utils import get_token
 from api.handler import YoutubeHandler
 
 
-BOT_PREFIX = ("[", "]")
-TOKEN = set_token()
+BOT_PREFIX = "["
+TOKEN = get_token("token.txt")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
@@ -19,10 +19,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith("p"):
+    if message.content.startswith(client.command_prefix + "p"):
         youtube_handler = YoutubeHandler()
-        videos = youtube_handler.get_videos(message)
-        await message.channel.send(videos)
+        result = ""
+        for video in youtube_handler.get_videos(message.content):
+            result = result + str(video)
+        await message.channel.send(result)
 
 
 client.run(TOKEN)

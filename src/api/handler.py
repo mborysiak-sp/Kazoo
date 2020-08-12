@@ -2,6 +2,7 @@ import os
 import googleapiclient.discovery
 import googleapiclient.errors
 from .result import Result
+from utils import get_token
 
 
 class YoutubeHandler:
@@ -11,8 +12,7 @@ class YoutubeHandler:
 
         api_service_name = "youtube"
         api_version = "v3"
-        path = os.path.abspath("../api_token.txt")
-        token = open(path, "r").read()
+        token = get_token("api_token.txt")
 
         self.youtube = googleapiclient.discovery.build(
             api_service_name, api_version, developerKey=token
@@ -35,5 +35,6 @@ class YoutubeHandler:
 
         for item in response["items"]:
             results.append(Result(item))
+            print(item)
 
         return results

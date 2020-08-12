@@ -124,8 +124,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-token.txt
+tokens/token.txt
 Scripts/
 .idea/
-/src/api_token.txt
-/src/api_token.txt
+/tokens/api_token.txt
+/tokens/api_token.txt
+/tokens/
+/tokens/
